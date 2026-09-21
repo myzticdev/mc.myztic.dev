@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#111813" />
+  <meta name="description" content="Minecraft plugins and datapacks by myzticdev. Lightweight projects focused on compatibility, simplicity, and easy maintenance." />
+  <meta property="og:title" content="myzticdev — Minecraft Projects" />
+  <meta property="og:description" content="Minecraft plugins and datapacks built for modern servers." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mc.myztic.dev/" />
+  <title>myzticdev — Minecraft Plugins & Datapacks</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2213%22%20fill%3D%22%233e7d4c%22/%3E%20%20%3Crect%20x%3D%2218%22%20y%3D%2217%22%20width%3D%2228%22%20height%3D%2214%22%20fill%3D%22%238fd26c%22/%3E%20%20%3Crect%20x%3D%2218%22%20y%3D%2231%22%20width%3D%2228%22%20height%3D%2216%22%20fill%3D%22%23654c32%22/%3E%20%20%3Cpath%20d%3D%22M18%2031h28%22%20stroke%3D%22%233e7d4c%22%20stroke-width%3D%224%22/%3E%3C/svg%3E" type="image/svg+xml" />
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #f4f7f1;
+  --surface: #ffffff;
+  --surface-2: #eaf0e6;
+  --text: #132018;
+  --muted: #657168;
+  --line: #d9e1d7;
+  --green: #4f9d62;
+  --green-strong: #287a42;
+  --lime: #9bd55e;
+  --dark: #111813;
+  --shadow: 0 24px 60px rgba(28, 55, 35, .10);
+  --radius: 22px;
+}
+
+html[data-theme="dark"] {
+  --bg: #0c110e;
+  --surface: #121914;
+  --surface-2: #172019;
+  --text: #eef5ed;
+  --muted: #9ba89f;
+  --line: #273128;
+  --green: #72c582;
+  --green-strong: #93d899;
+  --lime: #a8df67;
+  --dark: #eef5ed;
+  --shadow: 0 24px 70px rgba(0, 0, 0, .34);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; }
+button { color: inherit; }
+.site-shell { min-height: 100vh; overflow: hidden; }
+.section-pad { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+.topbar {
+  width: min(1240px, calc(100% - 32px));
+  margin: 16px auto 0;
+  padding: 12px 14px 12px 16px;
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  backdrop-filter: blur(18px);
+  position: sticky;
+  top: 12px;
+  z-index: 20;
+  box-shadow: 0 8px 28px rgba(0,0,0,.06);
+}
+.brand { display:flex; align-items:center; gap:11px; margin-right:auto; }
+.brand-mark { width:38px; height:38px; border-radius:9px; background:#3e7d4c; display:grid; place-items:center; box-shadow: inset 0 0 0 2px rgba(255,255,255,.08); }
+.brand-mark > span { width:18px; height:18px; background:linear-gradient(#8fd26c 0 46%, #654c32 46%); display:block; box-shadow: inset 0 0 0 2px rgba(0,0,0,.13); image-rendering:pixelated; }
+.brand-mark.mini { width:28px; height:28px; border-radius:7px; }
+.brand-mark.mini > span { width:13px; height:13px; }
+.brand-copy { display:grid; line-height:1.05; }
+.brand-copy strong { font-size:15px; letter-spacing:-.02em; }
+.brand-copy small { font-size:10px; margin-top:5px; color:var(--muted); text-transform:uppercase; letter-spacing:.11em; }
+.nav { display:flex; align-items:center; gap:26px; font-size:13px; color:var(--muted); }
+.nav a { transition:.2s ease; }
+.nav a:hover { color:var(--text); }
+.topbar-actions { display:flex; align-items:center; gap:8px; }
+.icon-btn { width:42px; height:42px; border-radius:11px; border:1px solid var(--line); background:var(--surface-2); display:grid; place-items:center; cursor:pointer; }
+.icon-btn svg { width:18px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; }
+html[data-theme="dark"] .sun { display:none; }
+html:not([data-theme="dark"]) .moon { display:none; }
+.button { display:inline-flex; align-items:center; justify-content:center; gap:9px; border:1px solid transparent; border-radius:12px; padding:13px 17px; font-weight:700; font-size:13px; transition:transform .18s ease, background .18s ease, border-color .18s ease; }
+.button:hover { transform: translateY(-2px); }
+.button-small { padding:11px 14px; }
+.button-primary { color:#08110b; background:var(--lime); box-shadow:0 10px 25px rgba(120,190,70,.16); }
+.button-ghost { border-color:var(--line); background:var(--surface); }
+.button-light { background:#f5f9f2; color:#132018; }
+
+.hero { min-height: 700px; padding-top: 108px; padding-bottom:90px; display:grid; grid-template-columns: 1.02fr .98fr; align-items:center; gap:66px; position:relative; }
+.hero::before { content:""; position:absolute; width:650px; height:650px; border-radius:50%; background:radial-gradient(circle, rgba(112,197,130,.13), transparent 67%); left:-300px; top:-120px; pointer-events:none; }
+.eyebrow, .kicker { font-family:"DM Mono", monospace; text-transform:uppercase; letter-spacing:.13em; font-size:11px; color:var(--green); font-weight:500; }
+.eyebrow { display:flex; align-items:center; gap:8px; margin-bottom:20px; }
+.status-dot { width:7px; height:7px; border-radius:50%; background:var(--lime); box-shadow:0 0 0 5px rgba(155,213,94,.10); }
+.hero h1 { margin:0; font-size:clamp(58px, 7.2vw, 98px); line-height:.91; letter-spacing:-.068em; max-width:720px; }
+.hero h1 span { color:var(--green); }
+.hero-lede { max-width:630px; font-size:18px; line-height:1.7; color:var(--muted); margin:29px 0 30px; }
+.hero-lede strong { color:var(--text); }
+.hero-actions { display:flex; gap:11px; flex-wrap:wrap; }
+.hero-tags { display:flex; gap:8px; flex-wrap:wrap; margin-top:35px; }
+.hero-tags span, .compat-row span { font-family:"DM Mono", monospace; font-size:10px; border:1px solid var(--line); color:var(--muted); border-radius:99px; padding:7px 10px; }
+
+.hero-art { min-height:500px; display:grid; place-items:center; }
+.voxel-scene { width:min(100%, 515px); aspect-ratio:1/.94; border:1px solid var(--line); background:linear-gradient(145deg, var(--surface), var(--surface-2)); border-radius:30px; position:relative; overflow:hidden; box-shadow:var(--shadow); }
+.voxel-scene::after { content:""; position:absolute; inset:auto -20% -35% -20%; height:58%; transform:rotate(-7deg); background:linear-gradient(145deg, rgba(96,150,75,.22), rgba(80,110,70,.04)); border-top:1px solid var(--line); }
+.grid-lines { position:absolute; inset:0; background-image:linear-gradient(rgba(120,150,120,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(120,150,120,.06) 1px, transparent 1px); background-size:28px 28px; mask-image:linear-gradient(to bottom, black, transparent 86%); }
+.cube { --size: 92px; position:absolute; width:var(--size); height:var(--size); transform:rotate(30deg) skew(-10deg,-10deg); filter:drop-shadow(0 20px 18px rgba(0,0,0,.17)); z-index:2; }
+.cube::before, .cube i, .cube b { content:""; position:absolute; display:block; }
+.cube::before { inset:0; background:#72b85f; border:6px solid rgba(0,0,0,.09); }
+.cube i { width:100%; height:34%; top:-33%; left:16%; background:#91d66f; transform:skew(40deg); border:6px solid rgba(0,0,0,.08); }
+.cube b { width:35%; height:100%; right:-34%; top:-17%; background:#4c8251; transform:skewY(40deg); border:6px solid rgba(0,0,0,.09); }
+.cube-a { top:105px; left:125px; --size:108px; }
+.cube-b { top:225px; right:105px; --size:80px; opacity:.88; }
+.cube-c { top:300px; left:72px; --size:60px; opacity:.65; }
+.pixel-spark { width:10px; height:10px; position:absolute; background:var(--lime); box-shadow:14px 0 0 rgba(155,213,94,.35), 0 14px 0 rgba(155,213,94,.2); z-index:3; }
+.spark-1 { top:72px; right:82px; }
+.spark-2 { top:265px; left:50px; transform:scale(.7); }
+.spark-3 { top:350px; right:48px; transform:scale(.55); }
+.scene-label { position:absolute; left:26px; right:26px; bottom:24px; padding:15px; border-radius:15px; border:1px solid color-mix(in srgb, var(--line) 80%, transparent); background:color-mix(in srgb, var(--surface) 90%, transparent); backdrop-filter:blur(10px); display:flex; align-items:center; gap:12px; z-index:5; }
+.scene-icon { width:38px; height:38px; background:var(--text); color:var(--bg); border-radius:9px; display:grid; place-items:center; font-weight:800; }
+.scene-label div { display:grid; gap:4px; }
+.scene-label strong { font-size:13px; }
+.scene-label small { color:var(--muted); font-size:10px; text-transform:uppercase; letter-spacing:.09em; }
+
+.numbers { border-top:1px solid var(--line); border-bottom:1px solid var(--line); display:grid; grid-template-columns:repeat(4,1fr); }
+.numbers div { padding:26px 22px; display:flex; align-items:center; gap:14px; border-right:1px solid var(--line); }
+.numbers div:last-child { border-right:0; }
+.numbers strong { font-family:"DM Mono",monospace; color:var(--green); font-size:11px; }
+.numbers span { font-size:13px; color:var(--muted); }
+
+.projects { padding-top:120px; padding-bottom:130px; }
+.section-heading { display:grid; grid-template-columns:1fr .7fr; gap:70px; align-items:end; margin-bottom:45px; }
+.kicker { margin:0 0 15px; }
+.section-heading h2, .about-copy h2, .cta h2 { margin:0; font-size:clamp(38px,5vw,64px); line-height:.98; letter-spacing:-.055em; }
+.section-heading > p { color:var(--muted); line-height:1.75; margin:0; font-size:14px; }
+.project-toolbar { display:flex; justify-content:space-between; gap:18px; margin-bottom:22px; }
+.filters { display:flex; gap:7px; }
+.filter { border:1px solid var(--line); background:var(--surface); color:var(--muted); border-radius:99px; padding:10px 14px; cursor:pointer; font-size:12px; }
+.filter.active { background:var(--text); color:var(--bg); border-color:var(--text); }
+.search-box { min-width:240px; height:40px; display:flex; align-items:center; gap:8px; border:1px solid var(--line); background:var(--surface); border-radius:11px; padding:0 12px; }
+.search-box svg { width:15px; fill:none; stroke:var(--muted); stroke-width:1.8; }
+.search-box input { border:0; outline:0; background:transparent; color:var(--text); width:100%; font-size:12px; }
+.search-box input::placeholder { color:var(--muted); }
+.project-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+.project-card { min-height:360px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:26px; display:flex; flex-direction:column; transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+.project-card:hover { transform:translateY(-4px); border-color:color-mix(in srgb, var(--green) 45%, var(--line)); box-shadow:var(--shadow); }
+.project-card.featured { background:linear-gradient(145deg, color-mix(in srgb, var(--green) 8%, var(--surface)), var(--surface)); }
+.card-top { display:flex; justify-content:space-between; align-items:flex-start; }
+.project-icon { width:58px; height:58px; border-radius:15px; background:var(--surface-2); border:1px solid var(--line); position:relative; display:grid; place-items:center; }
+.type-badge { font-family:"DM Mono",monospace; font-size:10px; text-transform:uppercase; letter-spacing:.08em; padding:7px 9px; border-radius:8px; border:1px solid var(--line); }
+.type-badge.datapack { color:var(--green); }
+.type-badge.plugin { color:#8aa2e8; }
+.type-badge.soon { color:var(--muted); }
+.project-card h3 { font-size:27px; margin:28px 0 12px; letter-spacing:-.04em; }
+.project-card > p { max-width:530px; color:var(--muted); font-size:14px; line-height:1.7; margin:0 0 24px; }
+.compat-row { display:flex; gap:6px; flex-wrap:wrap; margin-top:auto; margin-bottom:24px; }
+.card-actions { border-top:1px solid var(--line); padding-top:17px; display:flex; gap:22px; }
+.card-actions a { font-size:12px; font-weight:700; color:var(--muted); }
+.card-actions a:hover { color:var(--text); }
+.flesh-icon span, .flesh-icon b { position:absolute; width:18px; height:18px; border-radius:3px; }
+.flesh-icon span { left:8px; background:#8a3c31; box-shadow: inset 0 0 0 3px rgba(255,255,255,.08); }
+.flesh-icon b { right:7px; background:#b47745; }
+.flesh-icon i { font-style:normal; color:var(--green); font-size:16px; }
+.shield-icon span { width:30px; height:34px; clip-path:polygon(50% 0, 90% 15%, 84% 70%, 50% 100%, 16% 70%, 10% 15%); background:var(--green); color:#102016; font-weight:800; display:grid; place-items:center; }
+.mud-icon span { width:26px; height:26px; background:#6f5543; border-radius:4px; transform:rotate(4deg); }
+.mud-icon b { position:absolute; width:18px; height:18px; background:#a49c84; right:8px; bottom:8px; border-radius:3px; border:2px solid var(--surface-2); }
+.plus-icon { font-size:28px; color:var(--muted); }
+.muted-card { opacity:.88; }
+.empty-state { color:var(--muted); text-align:center; padding:40px 0; }
+
+.about-band { border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--surface); }
+.about-inner { padding-top:110px; padding-bottom:110px; display:grid; grid-template-columns:.8fr 1.2fr; gap:100px; }
+.about-copy h2 { max-width:500px; }
+.about-points { display:grid; gap:0; border-top:1px solid var(--line); }
+.about-points article { display:grid; grid-template-columns:50px 1fr; gap:12px; padding:23px 0; border-bottom:1px solid var(--line); }
+.about-points article > span { color:var(--green); font-family:"DM Mono",monospace; font-size:10px; padding-top:4px; }
+.about-points h3 { margin:0 0 7px; font-size:15px; }
+.about-points p { margin:0; color:var(--muted); font-size:13px; line-height:1.65; }
+
+.cta { padding-top:110px; padding-bottom:110px; }
+.cta-box { background:#3f794b; color:#f7fbf4; border-radius:28px; padding:54px; display:flex; justify-content:space-between; gap:40px; align-items:end; position:relative; overflow:hidden; }
+.cta-box::after { content:""; position:absolute; width:260px; height:260px; border:34px solid rgba(255,255,255,.06); border-radius:52px; transform:rotate(26deg); right:15%; top:-120px; }
+.cta .kicker { color:#c9ef9d; }
+.cta h2 { color:white; font-size:48px; }
+.cta p:not(.kicker) { color:rgba(255,255,255,.72); max-width:580px; line-height:1.6; font-size:13px; }
+.cta .button { position:relative; z-index:2; white-space:nowrap; }
+.footer { border-top:1px solid var(--line); padding-top:40px; padding-bottom:55px; display:grid; grid-template-columns:auto 1fr auto; gap:28px; align-items:center; }
+.footer-brand { display:flex; align-items:center; gap:9px; }
+.footer p, .footer small { color:var(--muted); font-size:11px; }
+.footer-links { display:flex; gap:22px; justify-self:end; font-size:11px; }
+.footer small { grid-column:1/-1; }
+
+.reveal { opacity:1; transform:none; }
+html.js .reveal { opacity:0; transform:translateY(18px); transition:opacity .65s ease, transform .65s ease; }
+html.js .reveal.visible { opacity:1; transform:none; }
+.project-card[hidden] { display:none; }
+
+@media (max-width: 900px) {
+  .nav { display:none; }
+  .hero { grid-template-columns:1fr; padding-top:80px; gap:55px; }
+  .hero-art { min-height:auto; }
+  .voxel-scene { max-width:620px; }
+  .numbers { grid-template-columns:repeat(2,1fr); }
+  .numbers div:nth-child(2) { border-right:0; }
+  .numbers div:nth-child(-n+2) { border-bottom:1px solid var(--line); }
+  .section-heading, .about-inner { grid-template-columns:1fr; gap:35px; }
+  .cta-box { align-items:flex-start; flex-direction:column; }
+  .footer { grid-template-columns:1fr; }
+  .footer-links { justify-self:start; }
+}
+
+@media (max-width: 650px) {
+  .section-pad { width:min(100% - 28px, 1180px); }
+  .topbar { width:calc(100% - 20px); margin-top:10px; top:8px; min-height:62px; }
+  .brand-copy small, .topbar .button-small { display:none; }
+  .topbar-actions { gap:5px; }
+  .hero { min-height:auto; padding-top:72px; padding-bottom:70px; }
+  .hero h1 { font-size:clamp(52px,16vw,78px); }
+  .hero-lede { font-size:16px; }
+  .hero-actions .button { flex:1 1 150px; }
+  .voxel-scene { border-radius:22px; aspect-ratio:1/1.04; }
+  .cube-a { left:22%; top:22%; }
+  .cube-b { right:16%; top:49%; }
+  .numbers { width:calc(100% - 28px); }
+  .numbers div { padding:19px 12px; flex-direction:column; align-items:flex-start; gap:6px; }
+  .projects { padding-top:85px; padding-bottom:90px; }
+  .project-toolbar { align-items:stretch; flex-direction:column; }
+  .search-box { min-width:0; width:100%; }
+  .project-grid { grid-template-columns:1fr; }
+  .project-card { min-height:330px; }
+  .about-inner { padding-top:85px; padding-bottom:85px; }
+  .cta { padding-top:80px; padding-bottom:80px; }
+  .cta-box { padding:34px 26px; }
+  .cta h2 { font-size:40px; }
+  .footer { padding-bottom:40px; }
+}
+
+</style>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="myzticdev home">
+        <span class="brand-mark" aria-hidden="true"><span></span></span>
+        <span class="brand-copy">
+          <strong>myzticdev</strong>
+          <small>Minecraft projects</small>
+        </span>
+      </a>
+
+      <nav class="nav" id="site-nav" aria-label="Main navigation">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#support">Support</a>
+        <a href="https://github.com/myzticdev" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
+          <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.64 5.64l1.42 1.42M16.94 16.94l1.42 1.42M18.36 5.64l-1.42 1.42M7.06 16.94l-1.42 1.42"/><circle cx="12" cy="12" r="4"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.5A8 8 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5Z"/></svg>
+        </button>
+        <a class="button button-small button-primary" href="#projects">Browse projects</a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero section-pad">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span class="status-dot"></span> Built for modern Minecraft</div>
+          <h1>Small projects.<br><span>Useful ideas.</span></h1>
+          <p class="hero-lede">Plugins and datapacks by <strong>myzticdev</strong>, built to do one job well without turning your server into a maintenance project.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">Explore projects</a>
+            <a class="button button-ghost" href="https://github.com/myzticdev" target="_blank" rel="noreferrer">View GitHub <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="hero-tags" aria-label="Project goals">
+            <span>Paper</span>
+            <span>Datapacks</span>
+            <span>Simple configs</span>
+            <span>Fast updates</span>
+          </div>
+        </div>
+
+        <div class="hero-art reveal" aria-hidden="true">
+          <div class="voxel-scene">
+            <div class="grid-lines"></div>
+            <div class="cube cube-a"><i></i><b></b><em></em></div>
+            <div class="cube cube-b"><i></i><b></b><em></em></div>
+            <div class="cube cube-c"><i></i><b></b><em></em></div>
+            <div class="pixel-spark spark-1"></div>
+            <div class="pixel-spark spark-2"></div>
+            <div class="pixel-spark spark-3"></div>
+            <div class="scene-label">
+              <span class="scene-icon">M</span>
+              <div><strong>mc.myztic.dev</strong><small>Plugins · Datapacks · Tools</small></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="numbers section-pad reveal" aria-label="Project principles">
+        <div><strong>01</strong><span>Focused purpose</span></div>
+        <div><strong>02</strong><span>Low maintenance</span></div>
+        <div><strong>03</strong><span>Modern versions</span></div>
+        <div><strong>04</strong><span>Server friendly</span></div>
+      </section>
+
+      <section class="projects section-pad" id="projects">
+        <div class="section-heading reveal">
+          <div>
+            <p class="kicker">Projects</p>
+            <h2>Pick what your server needs.</h2>
+          </div>
+          <p>Each project stays intentionally focused so updates remain quick, configs stay readable, and you can install only what you actually want.</p>
+        </div>
+
+        <div class="project-toolbar reveal">
+          <div class="filters" role="group" aria-label="Filter projects">
+            <button class="filter active" data-filter="all" type="button">All</button>
+            <button class="filter" data-filter="plugin" type="button">Plugins</button>
+            <button class="filter" data-filter="datapack" type="button">Datapacks</button>
+          </div>
+          <label class="search-box">
+            <span class="sr-only">Search projects</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input id="project-search" type="search" placeholder="Search projects" autocomplete="off" />
+          </label>
+        </div>
+
+        <div class="project-grid" id="project-grid">
+          <article class="project-card featured reveal" data-kind="datapack" data-search="flesh2leather rotten flesh leather furnace smelting datapack">
+            <div class="card-top">
+              <div class="project-icon flesh-icon"><span></span><i>→</i><b></b></div>
+              <span class="type-badge datapack">Datapack</span>
+            </div>
+            <h3>Flesh2Leather</h3>
+            <p>Smelt rotten flesh into leather with a tiny, vanilla-friendly datapack designed for broad version support.</p>
+            <div class="compat-row"><span>Vanilla friendly</span><span>Easy install</span></div>
+            <div class="card-actions">
+              <a href="#" aria-label="Flesh2Leather downloads">Downloads</a>
+              <a href="#" aria-label="Flesh2Leather source code">Source <span>↗</span></a>
+            </div>
+          </article>
+
+          <article class="project-card reveal" data-kind="plugin" data-search="commandfence command blocker tab completion manager paper plugin blacklist whitelist">
+            <div class="card-top">
+              <div class="project-icon shield-icon"><span>⌁</span></div>
+              <span class="type-badge plugin">Plugin</span>
+            </div>
+            <h3>CommandFence</h3>
+            <p>Control commands and tab completion with blacklist or whitelist modes for modern Paper servers.</p>
+            <div class="compat-row"><span>Paper</span><span>Config driven</span></div>
+            <div class="card-actions">
+              <a href="#">Downloads</a>
+              <a href="#">Source <span>↗</span></a>
+            </div>
+          </article>
+
+          <article class="project-card reveal" data-kind="datapack" data-search="mud2clay mud clay smelting furnace datapack minecraft">
+            <div class="card-top">
+              <div class="project-icon mud-icon"><span></span><b></b></div>
+              <span class="type-badge datapack">Datapack</span>
+            </div>
+            <h3>Mud2Clay</h3>
+            <p>A compact recipe datapack for turning mud into clay through a straightforward furnace workflow.</p>
+            <div class="compat-row"><span>Lightweight</span><span>Survival utility</span></div>
+            <div class="card-actions">
+              <a href="#">Coming soon</a>
+              <a href="#">Source <span>↗</span></a>
+            </div>
+          </article>
+
+          <article class="project-card muted-card reveal" data-kind="plugin" data-search="future plugin upcoming minecraft paper">
+            <div class="card-top">
+              <div class="project-icon plus-icon">+</div>
+              <span class="type-badge soon">Next project</span>
+            </div>
+            <h3>More on the way</h3>
+            <p>New focused utilities will appear here as they are ready. No giant bundles and no unnecessary feature creep.</p>
+            <div class="compat-row"><span>Simple</span><span>Maintainable</span></div>
+            <div class="card-actions">
+              <a href="https://github.com/myzticdev" target="_blank" rel="noreferrer">Follow development <span>↗</span></a>
+            </div>
+          </article>
+        </div>
+        <p class="empty-state" id="empty-state" hidden>No matching projects.</p>
+      </section>
+
+      <section class="about-band" id="about">
+        <div class="about-inner section-pad">
+          <div class="about-copy reveal">
+            <p class="kicker">Built with restraint</p>
+            <h2>Install features,<br>not baggage.</h2>
+          </div>
+          <div class="about-points reveal">
+            <article><span>01</span><div><h3>Focused</h3><p>Projects are built around a clear purpose instead of packing unrelated features together.</p></div></article>
+            <article><span>02</span><div><h3>Maintainable</h3><p>Minimal dependencies and straightforward layouts make future Minecraft updates easier to handle.</p></div></article>
+            <article><span>03</span><div><h3>Practical</h3><p>Designed around real server use: sensible defaults, readable configs, and quick installation.</p></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta section-pad reveal" id="support">
+        <div class="cta-box">
+          <div>
+            <p class="kicker">Open projects</p>
+            <h2>See what’s being built.</h2>
+            <p>Source, releases, issues, and project history can live in one place on GitHub.</p>
+          </div>
+          <a class="button button-light" href="https://github.com/myzticdev" target="_blank" rel="noreferrer">github.com/myzticdev <span>↗</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer section-pad">
+      <div class="footer-brand"><span class="brand-mark mini"><span></span></span><strong>myzticdev</strong></div>
+      <p>Minecraft plugins, datapacks, and server utilities.</p>
+      <div class="footer-links">
+        <a href="#projects">Projects</a>
+        <a href="https://github.com/myzticdev" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://mc.myztic.dev">mc.myztic.dev</a>
+      </div>
+      <small>Not affiliated with Mojang Studios or Microsoft.</small>
+    </footer>
+  </div>
+
+  <script>
+document.documentElement.classList.add('js');
+const root = document.documentElement;
+const themeToggle = document.querySelector('#theme-toggle');
+let storedTheme = null;
+try { storedTheme = localStorage.getItem('mc-theme'); } catch (e) {}
+const preferredDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+root.dataset.theme = storedTheme || (preferredDark ? 'dark' : 'light');
+
+themeToggle?.addEventListener('click', () => {
+  root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+  try { localStorage.setItem('mc-theme', root.dataset.theme); } catch (e) {}
+});
+
+const revealElements = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.06 });
+  revealElements.forEach((element) => observer.observe(element));
+  setTimeout(() => revealElements.forEach((element) => element.classList.add('visible')), 1200);
+} else {
+  revealElements.forEach((element) => element.classList.add('visible'));
+}
+
+const filters = [...document.querySelectorAll('.filter')];
+const cards = [...document.querySelectorAll('.project-card')];
+const search = document.querySelector('#project-search');
+const empty = document.querySelector('#empty-state');
+let activeFilter = 'all';
+
+function updateProjects() {
+  const query = search.value.trim().toLowerCase();
+  let visible = 0;
+
+  cards.forEach((card) => {
+    const kindMatches = activeFilter === 'all' || card.dataset.kind === activeFilter;
+    const queryMatches = !query || card.dataset.search.includes(query) || card.textContent.toLowerCase().includes(query);
+    const show = kindMatches && queryMatches;
+    card.hidden = !show;
+    if (show) visible += 1;
+  });
+
+  empty.hidden = visible !== 0;
+}
+
+filters.forEach((button) => {
+  button.addEventListener('click', () => {
+    filters.forEach((item) => item.classList.remove('active'));
+    button.classList.add('active');
+    activeFilter = button.dataset.filter;
+    updateProjects();
+  });
+});
+
+search.addEventListener('input', updateProjects);
+
+</script>
+</body>
+</html>
