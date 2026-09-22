@@ -291,3 +291,30 @@ code { font-family:"DM Mono",monospace; font-size:.9em; color:var(--text); backg
   .mini-feature-grid { grid-template-columns:1fr; }
   .project-content { padding-bottom:80px; }
 }
+
+/* Mobile/project card hardening */
+.project-icon.project-icon-image {
+  flex: 0 0 58px;
+  width: 58px;
+  height: 58px;
+  min-width: 58px;
+  max-width: 58px;
+  min-height: 58px;
+  max-height: 58px;
+}
+.project-icon.project-icon-image img {
+  width: 48px;
+  height: 48px;
+  max-width: 48px;
+  max-height: 48px;
+}
+@media (max-width:650px) {
+  .card-top { gap:16px; }
+  .project-card { overflow:hidden; }
+  .card-actions { gap:14px; flex-wrap:wrap; }
+  .project-icon.project-icon-image {
+    flex-basis:58px;
+    width:58px;
+    height:58px;
+  }
+}
