@@ -1,5 +1,5 @@
 services:
-  web:
+  Myztic MC Dev:
     build:
       context: .
       dockerfile: Dockerfile
