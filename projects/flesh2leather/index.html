@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#111813" />
+  <meta name="description" content="Flesh2Leather by myzticdev — cook Rotten Flesh into Leather in Minecraft Java, with support from 1.13 through 26.3." />
+  <meta property="og:title" content="Flesh2Leather — myzticdev" />
+  <meta property="og:description" content="A lightweight Minecraft Java datapack that turns Rotten Flesh into Leather." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mc.myztic.dev/projects/flesh2leather/" />
+  <title>Flesh2Leather — myzticdev</title>
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="myzticdev home">
+        <span class="brand-mark" aria-hidden="true"><span></span></span>
+        <span class="brand-copy"><strong>myzticdev</strong><small>Minecraft projects</small></span>
+      </a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="/#projects">Projects</a>
+        <a href="/#about">About</a>
+        <a href="https://github.com/myzticdev/flesh2leather" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
+          <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.64 5.64l1.42 1.42M16.94 16.94l1.42 1.42M18.36 5.64l-1.42 1.42M7.06 16.94l-1.42 1.42"/><circle cx="12" cy="12" r="4"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.5A8 8 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5Z"/></svg>
+        </button>
+        <a class="button button-small button-primary" href="https://github.com/myzticdev/flesh2leather/releases" target="_blank" rel="noreferrer">Downloads</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="project-hero section-pad">
+        <div class="project-hero-copy">
+          <a class="back-link" href="/#projects">← All projects</a>
+          <div class="eyebrow"><span class="status-dot"></span> Minecraft Java datapack</div>
+          <h1>Flesh2Leather</h1>
+          <p class="project-summary">Turn Rotten Flesh into Leather with a focused recipe datapack. One item in, one item out, with no functions, tick loop, resource pack, or unrelated gameplay changes.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/myzticdev/flesh2leather/releases" target="_blank" rel="noreferrer">Download releases ↗</a>
+            <a class="button button-ghost" href="https://github.com/myzticdev/flesh2leather" target="_blank" rel="noreferrer">View source ↗</a>
+          </div>
+          <div class="hero-tags">
+            <span>Java 1.13–26.3</span>
+            <span>Furnace</span>
+            <span>Smoker 1.14+</span>
+            <span>0.35 XP</span>
+          </div>
+        </div>
+
+        <div class="recipe-card">
+          <div class="recipe-label">Recipe</div>
+          <div class="recipe-flow">
+            <div class="recipe-item flesh"><span>Rotten Flesh</span></div>
+            <div class="recipe-arrow">→</div>
+            <div class="recipe-item leather"><span>Leather</span></div>
+          </div>
+          <div class="recipe-meta">
+            <div><strong>Furnace</strong><span>10 seconds</span></div>
+            <div><strong>Smoker</strong><span>5 seconds · 1.14+</span></div>
+            <div><strong>Experience</strong><span>0.35 XP</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-detail section-pad">
+        <div class="detail-grid">
+          <article class="detail-panel">
+            <p class="kicker">Install</p>
+            <h2>Drop it in and reload.</h2>
+            <ol class="install-steps">
+              <li>Download the ZIP matching your Minecraft Java version from GitHub Releases.</li>
+              <li>Place that ZIP in your world's <code>datapacks/</code> folder.</li>
+              <li>Reopen the world or run <code>/reload</code>.</li>
+              <li>Check <code>/datapack list enabled</code>, then cook Rotten Flesh with fuel.</li>
+            </ol>
+            <p class="detail-note">Install only one version-specific ZIP. If you use the all-versions bundle, extract it first and choose the correct inner ZIP.</p>
+          </article>
+
+          <article class="detail-panel">
+            <p class="kicker">Compatibility</p>
+            <h2>From 1.13 to 26.3.</h2>
+            <div class="version-list">
+              <span>1.13.x</span><span>1.14.x</span><span>1.15–1.16.1</span><span>1.16.2–1.16.5</span>
+              <span>1.17.x</span><span>1.18–1.18.1</span><span>1.18.2</span><span>1.19–1.19.3</span>
+              <span>1.19.4</span><span>1.20–1.20.1</span><span>1.20.2–26.3</span>
+            </div>
+            <p class="detail-note">1.13 is furnace-only. Smoker support begins with Minecraft Java 1.14.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="project-why">
+        <div class="section-pad project-why-inner">
+          <div>
+            <p class="kicker">Why Flesh2Leather</p>
+            <h2>One useful recipe.<br>No extra machinery.</h2>
+          </div>
+          <div class="about-points">
+            <article><span>01</span><div><h3>No tick loop</h3><p>The datapack does not add constantly running functions or background processing.</p></div></article>
+            <article><span>02</span><div><h3>No resource pack</h3><p>It uses standard Minecraft items and cooking mechanics.</p></div></article>
+            <article><span>03</span><div><h3>Version-specific builds</h3><p>Compatibility is split where Minecraft recipe or datapack formats require it instead of pretending one file works everywhere.</p></div></article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer section-pad">
+      <div class="footer-brand"><span class="brand-mark mini"><span></span></span><strong>myzticdev</strong></div>
+      <p>Flesh2Leather · Minecraft Java datapack.</p>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="https://github.com/myzticdev/flesh2leather" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://github.com/myzticdev/flesh2leather/releases" target="_blank" rel="noreferrer">Releases</a>
+      </div>
+      <small>Not affiliated with Mojang Studios or Microsoft.</small>
+    </footer>
+  </div>
+  <script src="/assets/js/app.js" defer></script>
+</body>
+</html>
