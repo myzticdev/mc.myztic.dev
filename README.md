@@ -43,3 +43,13 @@ The all-versions bundle and checksums are listed separately. When updating the
 saved HTML, keep its tag, date, and asset URLs from the same published release.
 
 Run download logic checks with `node --test tests/releases.test.mjs`.
+
+## Interface icons
+
+Interface symbols use locally served Feather SVG icons (v4.29.2), styled through
+CSS masks to inherit link and button colors. Keep text labels alongside icons and
+mark decorative icon spans `aria-hidden="true"`. New interface actions should use
+SVG icons rather than emoji or Unicode arrow characters.
+
+Source: https://github.com/feathericons/feather/tree/v4.29.2/icons
+License: `assets/icons/LICENSE` (MIT).

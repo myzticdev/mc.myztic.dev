@@ -39,7 +39,11 @@ function renderRelease(container, release) {
     const link = document.createElement('a');
     link.className = 'download-link';
     link.href = build.url;
-    link.textContent = 'Download ZIP ↓';
+    link.textContent = 'Download ZIP ';
+    const icon = document.createElement('span');
+    icon.className = 'icon icon-download';
+    icon.setAttribute('aria-hidden', 'true');
+    link.append(icon);
     link.setAttribute('aria-label', `Download Flesh2Leather ${model.tag} for Minecraft ${build.version}`);
     action.append(link);
     row.append(version, size, action);
