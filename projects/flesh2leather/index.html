@@ -9,6 +9,7 @@
   <meta property="og:description" content="A lightweight Minecraft Java datapack that turns Rotten Flesh into Leather." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mc.myztic.dev/projects/flesh2leather/" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/myzticdev/flesh2leather/main/src/pack.png" />
   <title>Flesh2Leather — myzticdev</title>
   <link rel="stylesheet" href="/assets/css/styles.css" />
 </head>
@@ -34,16 +35,18 @@
     </header>
 
     <main>
-      <section class="project-hero section-pad">
-        <div class="project-hero-copy">
-          <a class="back-link" href="/#projects">← All projects</a>
+      <section class="project-showcase section-pad">
+        <div class="project-showcase-copy">
+          <a class="back-link" href="/#projects">← Back to projects</a>
           <div class="eyebrow"><span class="status-dot"></span> Minecraft Java datapack</div>
           <h1>Flesh2Leather</h1>
-          <p class="project-summary">Turn Rotten Flesh into Leather with a focused recipe datapack. One item in, one item out, with no functions, tick loop, resource pack, or unrelated gameplay changes.</p>
+          <p class="project-summary">Turn Rotten Flesh into Leather with one focused recipe. No functions, no tick loop, no resource pack, and no unrelated gameplay changes.</p>
+
           <div class="hero-actions">
             <a class="button button-primary" href="https://github.com/myzticdev/flesh2leather/releases" target="_blank" rel="noreferrer">Download releases ↗</a>
             <a class="button button-ghost" href="https://github.com/myzticdev/flesh2leather" target="_blank" rel="noreferrer">View source ↗</a>
           </div>
+
           <div class="hero-tags">
             <span>Java 1.13–26.3</span>
             <span>Furnace</span>
@@ -52,38 +55,60 @@
           </div>
         </div>
 
-        <div class="recipe-card">
-          <div class="recipe-label">Recipe</div>
-          <div class="recipe-flow">
-            <div class="recipe-item flesh"><span>Rotten Flesh</span></div>
-            <div class="recipe-arrow">→</div>
-            <div class="recipe-item leather"><span>Leather</span></div>
+        <aside class="project-showcase-card">
+          <div class="project-pack-row">
+            <img class="project-pack-icon" src="https://raw.githubusercontent.com/myzticdev/flesh2leather/main/src/pack.png" alt="Flesh2Leather pack icon" />
+            <div class="project-showcase-meta">
+              <span class="type-badge datapack">Datapack</span>
+              <strong>Flesh2Leather</strong>
+              <small>by myzticdev</small>
+            </div>
           </div>
-          <div class="recipe-meta">
+
+          <div class="recipe-preview">
+            <div class="recipe-preview-item recipe-flesh">Rotten Flesh</div>
+            <div class="recipe-preview-arrow">→</div>
+            <div class="recipe-preview-item recipe-leather">Leather</div>
+          </div>
+
+          <div class="project-facts">
             <div><strong>Furnace</strong><span>10 seconds</span></div>
             <div><strong>Smoker</strong><span>5 seconds · 1.14+</span></div>
             <div><strong>Experience</strong><span>0.35 XP</span></div>
           </div>
-        </div>
+        </aside>
       </section>
 
-      <section class="project-detail section-pad">
-        <div class="detail-grid">
+      <section class="project-content section-pad">
+        <div class="project-panels">
+          <article class="detail-panel">
+            <p class="kicker">Overview</p>
+            <h2>Simple by design.</h2>
+            <p class="panel-copy">Flesh2Leather adds one practical survival recipe: cook Rotten Flesh into Leather. It stays small, predictable, and easy to maintain across Minecraft versions.</p>
+            <div class="mini-feature-grid">
+              <div class="mini-feature"><strong>1 recipe</strong><span>No feature bloat</span></div>
+              <div class="mini-feature"><strong>No functions</strong><span>No background loop</span></div>
+              <div class="mini-feature"><strong>No resource pack</strong><span>Pure datapack</span></div>
+              <div class="mini-feature"><strong>Versioned builds</strong><span>Format-aware releases</span></div>
+            </div>
+          </article>
+
           <article class="detail-panel">
             <p class="kicker">Install</p>
             <h2>Drop it in and reload.</h2>
             <ol class="install-steps">
-              <li>Download the ZIP matching your Minecraft Java version from GitHub Releases.</li>
-              <li>Place that ZIP in your world's <code>datapacks/</code> folder.</li>
+              <li>Download the ZIP matching your Minecraft Java version.</li>
+              <li>Place it in the world's <code>datapacks/</code> folder.</li>
               <li>Reopen the world or run <code>/reload</code>.</li>
-              <li>Check <code>/datapack list enabled</code>, then cook Rotten Flesh with fuel.</li>
+              <li>Verify with <code>/datapack list enabled</code>.</li>
+              <li>Cook Rotten Flesh with fuel.</li>
             </ol>
             <p class="detail-note">Install only one version-specific ZIP. If you use the all-versions bundle, extract it first and choose the correct inner ZIP.</p>
           </article>
 
           <article class="detail-panel">
             <p class="kicker">Compatibility</p>
-            <h2>From 1.13 to 26.3.</h2>
+            <h2>Supported versions.</h2>
             <div class="version-list">
               <span>1.13.x</span><span>1.14.x</span><span>1.15–1.16.1</span><span>1.16.2–1.16.5</span>
               <span>1.17.x</span><span>1.18–1.18.1</span><span>1.18.2</span><span>1.19–1.19.3</span>
@@ -91,20 +116,6 @@
             </div>
             <p class="detail-note">1.13 is furnace-only. Smoker support begins with Minecraft Java 1.14.</p>
           </article>
-        </div>
-      </section>
-
-      <section class="project-why">
-        <div class="section-pad project-why-inner">
-          <div>
-            <p class="kicker">Why Flesh2Leather</p>
-            <h2>One useful recipe.<br>No extra machinery.</h2>
-          </div>
-          <div class="about-points">
-            <article><span>01</span><div><h3>No tick loop</h3><p>The datapack does not add constantly running functions or background processing.</p></div></article>
-            <article><span>02</span><div><h3>No resource pack</h3><p>It uses standard Minecraft items and cooking mechanics.</p></div></article>
-            <article><span>03</span><div><h3>Version-specific builds</h3><p>Compatibility is split where Minecraft recipe or datapack formats require it instead of pretending one file works everywhere.</p></div></article>
-          </div>
         </div>
       </section>
     </main>
