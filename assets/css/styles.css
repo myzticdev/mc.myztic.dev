@@ -152,3 +152,24 @@ dd { margin:0; }
   .detail-layout { padding:32px 0 44px; }
   .project-sidebar { grid-template-columns:1fr; }
 }
+
+.downloads-section { margin-top:44px; scroll-margin-top:24px; }
+.downloads-heading { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.downloads-heading h2 { margin-bottom:6px; }
+.downloads-heading p { color:var(--muted); margin:0; font-size:14px; }
+.release-meta { display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 20px; margin-top:24px; font-size:13px; }
+.release-meta strong { color:var(--accent); font-size:18px; }
+.release-meta span { color:var(--muted); }
+.release-status { margin:8px 0 0; }
+.downloads-table { margin:16px 0 22px; }
+.downloads-table td:last-child { text-align:right; }
+.download-link { display:inline-flex; align-items:center; min-height:44px; font-size:13px; color:var(--accent); }
+.download-size { color:var(--muted); }
+.release-extras { display:flex; align-items:center; flex-wrap:wrap; gap:12px 24px; margin-bottom:12px; }
+.release-extras [hidden] { display:none; }
+@media (max-width:520px) {
+  .downloads-section { margin-top:32px; }
+  .downloads-table .download-size { display:none; }
+  .downloads-table th { font-size:13px; }
+  .download-link { font-size:12px; }
+}
