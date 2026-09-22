@@ -10,7 +10,7 @@ function applyTheme(theme) {
     themeToggle.textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';
     themeToggle.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
   }
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#111713' : '#fafbf8');
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#191a19' : '#f6f5f1');
 }
 
 applyTheme(['dark', 'light'].includes(savedTheme) ? savedTheme : (systemTheme.matches ? 'dark' : 'light'));
