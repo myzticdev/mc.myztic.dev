@@ -53,3 +53,12 @@ SVG icons rather than emoji or Unicode arrow characters.
 
 Source: https://github.com/feathericons/feather/tree/v4.29.2/icons
 License: `assets/icons/LICENSE` (MIT).
+
+## Homepage project cards
+
+Add released projects as `article.project-entry` elements inside `.project-grid`
+in `index.html`. Each card contains an icon, project name, type/version line,
+one-sentence description, and download/details/source links. The grid has two
+columns on wider screens and one on mobile. Keep recipe tables and installation
+steps on individual project pages. Planned projects stay in the separate notes
+section until released.
