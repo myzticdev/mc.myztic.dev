@@ -1,7 +1,31 @@
-const repository = 'https://github.com/myzticdev/flesh2leather';
-const versionPattern = /^Flesh2Leather-(\d+(?:\.(?:\d+|x))*(?:-\d+(?:\.(?:\d+|x))*)?)\.zip$/i;
+const defaults = {
+  repository: 'https://github.com/myzticdev/flesh2leather',
+  packName: 'Flesh2Leather',
+  prefix: 'Flesh2Leather',
+};
 
-export function releaseModel(release) {
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+export function optionsFromContainer(container = {}) {
+  const dataset = container.dataset || {};
+  const repository = dataset.releaseRepo || defaults.repository;
+  const packName = dataset.releasePack || defaults.packName;
+  const prefix = dataset.releasePrefix || packName;
+  return {
+    repository,
+    packName,
+    prefix,
+    versionPattern: new RegExp(`^${escapeRegExp(prefix)}-(\\d+(?:\\.(?:\\d+|x))*(?:-\\d+(?:\\.(?:\\d+|x))*)?)\\.zip$`, 'i'),
+  };
+}
+
+export function releaseModel(release, options = {}) {
+  const repository = options.repository || defaults.repository;
+  const packName = options.packName || defaults.packName;
+  const prefix = options.prefix || packName;
+  const versionPattern = options.versionPattern || new RegExp(`^${escapeRegExp(prefix)}-(\\d+(?:\\.(?:\\d+|x))*(?:-\\d+(?:\\.(?:\\d+|x))*)?)\\.zip$`, 'i');
   if (!release || release.draft || release.prerelease || !release.tag_name || !Array.isArray(release.assets)) throw new Error('Invalid release');
   if (!release.html_url?.startsWith(`${repository}/releases/tag/`)) throw new Error('Invalid release URL');
   const files = release.assets.filter(asset => asset.state === 'uploaded' && asset.browser_download_url?.startsWith(`${repository}/releases/download/`));
@@ -20,13 +44,14 @@ export function releaseModel(release) {
     dateLabel: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
     url: release.html_url,
     builds,
+    packName,
     bundle: files.find(asset => /-All-Versions\.zip$/i.test(asset.name))?.browser_download_url,
     checksums: files.find(asset => asset.name === 'SHA256SUMS.txt')?.browser_download_url,
   };
 }
 
-function renderRelease(container, release) {
-  const model = releaseModel(release);
+function renderRelease(container, release, options) {
+  const model = releaseModel(release, options);
   const rows = model.builds.map(build => {
     const row = document.createElement('tr');
     const version = document.createElement('th');
@@ -44,7 +69,7 @@ function renderRelease(container, release) {
     icon.className = 'icon icon-download';
     icon.setAttribute('aria-hidden', 'true');
     link.append(icon);
-    link.setAttribute('aria-label', `Download Flesh2Leather ${model.tag} for Minecraft ${build.version}`);
+    link.setAttribute('aria-label', `Download ${model.packName} ${model.tag} for Minecraft ${build.version}`);
     action.append(link);
     row.append(version, size, action);
     return row;
@@ -66,14 +91,16 @@ function renderRelease(container, release) {
 
 export async function refreshDownloads(container, fetchRelease = fetch) {
   const status = container.querySelector('[data-release-status]');
+  const options = optionsFromContainer(container);
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 8000);
   try {
-    const response = await fetchRelease('https://api.github.com/repos/myzticdev/flesh2leather/releases/latest', {
+    const api = `${options.repository.replace('https://github.com/', 'https://api.github.com/repos/')}/releases/latest`;
+    const response = await fetchRelease(api, {
       headers: { Accept: 'application/vnd.github+json' }, signal: controller.signal,
     });
     if (!response.ok) throw new Error('Release unavailable');
-    renderRelease(container, await response.json());
+    renderRelease(container, await response.json(), options);
     status.textContent = 'Latest stable release on GitHub.';
   } catch {
     status.textContent = 'Could not check for updates. Saved release downloads are shown below; check GitHub for newer releases.';
