@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#191a19" />
+  <meta name="description" content="NoChatPopup by myzticdev — a lightweight Paper 26.3 plugin for hiding the unverified-chat join popup. Download, requirements, and installation." />
+  <meta property="og:title" content="NoChatPopup — myzticdev" />
+  <meta property="og:description" content="Hide the unverified-chat join popup with a lightweight Paper plugin. No required plugins or plugin-specific configuration." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mc.myztic.dev/projects/nochatpopup/" />
+  <meta property="og:image" content="https://mc.myztic.dev/assets/images/nochatpopup.svg" />
+  <title>NoChatPopup — myzticdev</title>
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20260929-2" />
+  <script src="/assets/js/app.js?v=20260929-2" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><header class="topbar">
+<a class="brand" href="/" aria-label="myzticdev home"><span class="brand-mark" aria-hidden="true">m</span>myztic<span class="brand-dev">dev</span></a>
+<nav aria-label="Main navigation"><a href="/#projects">Projects</a><a href="https://github.com/myzticdev">GitHub <span class="icon icon-external-link" aria-hidden="true"></span></a><button id="theme-toggle" type="button" hidden>Light mode</button></nav>
+</header>
+<main id="main">
+<a class="back-link" href="/#projects"><span class="icon icon-arrow-left" aria-hidden="true"></span> All projects</a>
+<section class="project-header" aria-labelledby="project-title">
+<img class="detail-art" src="/assets/images/nochatpopup.svg" alt="Chat popup crossed out" width="256" height="256">
+<div><p class="eyebrow">Minecraft Java / Paper plugin</p><h1 id="project-title">NoChatPopup</h1>
+<p class="summary">A lightweight plugin with one job: hide the “Chat messages can't be verified” popup when players join.</p>
+<div class="actions"><a class="button" href="#downloads">Downloads <span class="icon icon-arrow-down" aria-hidden="true"></span></a><a class="text-link" href="https://github.com/myzticdev/NoChatPopup">Source <span class="icon icon-external-link" aria-hidden="true"></span></a><a class="text-link" href="https://github.com/myzticdev/NoChatPopup/issues">Report an issue <span class="icon icon-external-link" aria-hidden="true"></span></a></div></div>
+</section>
+<nav class="project-nav" aria-label="Project sections"><a href="#overview-heading">Overview</a><a href="#install-heading">Installation</a><a href="#downloads">Files &amp; downloads</a></nav>
+<div class="detail-layout"><div class="detail-main">
+<section aria-labelledby="overview-heading"><h2 id="overview-heading">A quieter welcome.</h2><p>NoChatPopup targets the unverified-chat warning shown on join. It leaves chat messages, formatting, signatures, and reporting unchanged.</p><ul><li>No required plugins.</li><li>No commands, permissions, or plugin-specific configuration.</li><li>No changes to authentication or <code>server.properties</code>.</li></ul><p>Releases are free. Quick updates for new Paper versions are the goal, with no paid early-access tier.</p><p class="note">Hiding the popup does not make unsigned chat verified.</p></section>
+<section aria-labelledby="install-heading"><h2 id="install-heading">Installation</h2><ol class="install-steps"><li><a href="#downloads">Download NoChatPopup-1.0.0.jar</a>.</li><li>Place the JAR in your server's <code>plugins/</code> directory.</li><li>Restart the server fully.</li></ol><p class="install-note">Requires Paper 26.3 and Java 25 or newer. Use a full restart, not <code>/reload</code> or a plugin hot-loader.</p><p class="note">To update, stop the server, replace the old JAR, and start it again. To uninstall, stop the server and remove the JAR.</p></section>
+<section aria-labelledby="metrics-heading"><h2 id="metrics-heading">Metrics</h2><p class="note">Standard bStats usage metrics are included, with no custom charts. To opt out, set <code>enabled: false</code> in <code>plugins/bStats/config.yml</code> and restart. This shared setting also affects other plugins using that configuration.</p></section>
+</div><aside class="project-sidebar" aria-label="Compatibility and support">
+<section><h2>Compatibility</h2><dl><div><dt>Server</dt><dd>Paper 26.3</dd></div><div><dt>Client</dt><dd>Java Edition 26.3</dd></div><div><dt>Java runtime</dt><dd>25+</dd></div><div><dt>Dependencies</dt><dd>None</dd></div><div><dt>Author</dt><dd>myzticdev</dd></div></dl><p class="note">Version 1.0.0 targets native 26.3 clients and intentionally rejects other Minecraft versions. Spigot, Folia, proxies, protocol translators, and other packet-plugin combinations are unverified.</p></section>
+<section><h2>Release status</h2><p class="note">The initial release passed its automated tests and build audit. Live-server and real-client popup suppression have not yet been verified.</p></section>
+<section><h2>Need a hand?</h2><p class="note">Include your plugin version, exact Paper build, Java and client versions, and relevant log errors when reporting a problem.</p><a class="text-link" href="https://github.com/myzticdev/NoChatPopup/issues">Report an issue <span class="icon icon-external-link" aria-hidden="true"></span></a></section>
+</aside></div>
+<section class="downloads-section" id="downloads" aria-labelledby="downloads-heading">
+<div class="downloads-heading"><div><h2 id="downloads-heading">Downloads</h2><p>Download the plugin JAR for Paper 26.3.</p></div><a class="text-link" href="https://github.com/myzticdev/NoChatPopup/releases/latest">Latest release <span class="icon icon-external-link" aria-hidden="true"></span></a></div>
+<div class="release-meta"><strong>v1.0.0</strong><span>Released <time datetime="2026-09-29T01:38:40Z">Sep 29, 2026 (UTC)</time></span><a href="https://github.com/myzticdev/NoChatPopup/releases/tag/v1.0.0">Release notes <span class="icon icon-external-link" aria-hidden="true"></span></a></div>
+<table class="downloads-table"><caption class="sr-only">NoChatPopup plugin downloads</caption><thead><tr><th scope="col">Server version</th><th class="download-size" scope="col">File size</th><th scope="col"><span class="sr-only">Download</span></th></tr></thead><tbody><tr><th scope="row">Paper 26.3 · Java 25+</th><td class="download-size">37.7 KiB</td><td><a class="download-link" href="https://github.com/myzticdev/NoChatPopup/releases/download/v1.0.0/NoChatPopup-1.0.0.jar" aria-label="Download NoChatPopup v1.0.0 for Paper 26.3">Download JAR <span class="icon icon-download" aria-hidden="true"></span></a></td></tr></tbody></table>
+<div class="release-extras"><a class="text-link" href="https://github.com/myzticdev/NoChatPopup/releases/download/v1.0.0/NoChatPopup-1.0.0.jar.sha256">SHA-256 checksum</a><a class="text-link" href="https://github.com/myzticdev/NoChatPopup/releases">All releases</a></div><p class="note">This is the published v1.0.0 download. Check the latest release for updates and its supported Minecraft versions.</p>
+</section></main><footer class="footer"><a href="/">myzticdev <span class="muted">/ Minecraft</span></a><small>Not affiliated with Mojang Studios or Microsoft.</small><a href="https://github.com/myzticdev">View source <span class="icon icon-external-link" aria-hidden="true"></span></a></footer></div></body></html>

@@ -345,3 +345,5 @@ body { font-size:14px; line-height:1.6; }
  .download-link { font-size:11px; }
 }
 @media (prefers-reduced-motion:reduce) { * { transition:none !important; } }
+
+.card-art.nochatpopup { background-color:#243b46; }
