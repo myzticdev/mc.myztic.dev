@@ -57,8 +57,17 @@ License: `assets/icons/LICENSE` (MIT).
 ## Homepage project cards
 
 Add released projects as `article.project-entry` elements inside `.project-grid`
-in `index.html`. Each card contains an icon, project name, type/version line,
-one-sentence description, and download/details/source links. The grid has two
-columns on wider screens and one on mobile. Keep recipe tables and installation
-steps on individual project pages. Planned projects stay in the separate notes
-section until released.
+in `index.html`. Set `data-category` to `datapacks`, `plugins`, `mods`, or
+`resource-packs`; set `data-name` and an ISO `data-date` for sorting. Each card
+contains artwork, title, author, compatibility, description, and links to its
+project page and downloads. Search, category counts, and sorting derive from
+these cards. Empty categories show an explicit unreleased state.
+
+The homepage features one released project, a searchable catalog, and a separate
+workbench for planned projects. Keep unreleased work out of the downloadable
+catalog. All cards and download links remain usable without JavaScript. Theme
+selection persists locally; new visitors start in dark mode.
+
+Project pages share the catalog styling, with overview, installation, and file
+anchors. The existing GitHub release refresh and saved download links remain in
+place. No build step or new runtime dependencies are required.
