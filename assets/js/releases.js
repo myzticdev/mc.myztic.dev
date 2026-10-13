@@ -8,6 +8,15 @@ function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+export function versionLabel(raw) {
+  const snapshot = raw.match(/^(.+?)-snapshot-(\d+)(?:-(\d+))?$/i);
+  if (snapshot) {
+    const [, game, first, last] = snapshot;
+    return last ? `${game} Snapshots ${first}–${last} (preview)` : `${game} Snapshot ${first} (preview)`;
+  }
+  return raw.replaceAll('-', '–');
+}
+
 export function optionsFromContainer(container = {}) {
   const dataset = container.dataset || {};
   const repository = dataset.releaseRepo || defaults.repository;
@@ -17,7 +26,7 @@ export function optionsFromContainer(container = {}) {
     repository,
     packName,
     prefix,
-    versionPattern: new RegExp(`^${escapeRegExp(prefix)}-(\\d+(?:\\.(?:\\d+|x))*(?:-\\d+(?:\\.(?:\\d+|x))*)?)\\.zip$`, 'i'),
+    versionPattern: new RegExp(`^${escapeRegExp(prefix)}-(\\d+(?:\\.(?:\\d+|x))*(?:-\\d+(?:\\.(?:\\d+|x))*)?(?:-snapshot-\\d+(?:-\\d+)?)?)\\.zip$`, 'i'),
   };
 }
 
@@ -25,13 +34,13 @@ export function releaseModel(release, options = {}) {
   const repository = options.repository || defaults.repository;
   const packName = options.packName || defaults.packName;
   const prefix = options.prefix || packName;
-  const versionPattern = options.versionPattern || new RegExp(`^${escapeRegExp(prefix)}-(\\d+(?:\\.(?:\\d+|x))*(?:-\\d+(?:\\.(?:\\d+|x))*)?)\\.zip$`, 'i');
+  const versionPattern = options.versionPattern || new RegExp(`^${escapeRegExp(prefix)}-(\\d+(?:\\.(?:\\d+|x))*(?:-\\d+(?:\\.(?:\\d+|x))*)?(?:-snapshot-\\d+(?:-\\d+)?)?)\\.zip$`, 'i');
   if (!release || release.draft || release.prerelease || !release.tag_name || !Array.isArray(release.assets)) throw new Error('Invalid release');
   if (!release.html_url?.startsWith(`${repository}/releases/tag/`)) throw new Error('Invalid release URL');
   const files = release.assets.filter(asset => asset.state === 'uploaded' && asset.browser_download_url?.startsWith(`${repository}/releases/download/`));
   const builds = files.filter(asset => versionPattern.test(asset.name)).map(asset => ({
     name: asset.name,
-    version: asset.name.match(versionPattern)[1].replaceAll('-', '–'),
+    version: versionLabel(asset.name.match(versionPattern)[1]),
     url: asset.browser_download_url,
     size: `${(asset.size / 1024).toFixed(1)} KiB`,
   })).sort((a, b) => b.version.localeCompare(a.version, 'en', { numeric: true }));

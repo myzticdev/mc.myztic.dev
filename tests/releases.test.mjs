@@ -66,3 +66,8 @@ test('successful refresh replaces rows and hides missing optional assets', async
     assert.match(nodes.get('[data-release-status]').textContent,/Latest stable/);
   } finally { delete globalThis.document; }
 });
+
+test('includes snapshot preview builds with a readable label, sorted first', () => {
+  const model=releaseModel({...release,assets:[...release.assets,asset('Flesh2Leather-26.4-snapshot-1-4.zip')]});
+  assert.deepEqual(model.builds.map(b=>b.version),['26.4 Snapshots 1–4 (preview)','1.20.2–26.3','1.13.x','1.9.x']);
+});
