@@ -347,3 +347,4 @@ body { font-size:14px; line-height:1.6; }
 @media (prefers-reduced-motion:reduce) { * { transition:none !important; } }
 
 .card-art.nochatpopup { background-color:#243b46; }
+.card-art.wool2string { background-color:#3a2716; }
