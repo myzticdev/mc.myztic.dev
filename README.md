@@ -58,9 +58,11 @@ License: `assets/icons/LICENSE` (MIT).
 
 Add released projects as `article.project-entry` elements inside `.project-grid`
 in `index.html`. Set `data-category` to `datapacks`, `plugins`, `mods`, or
-`resource-packs`; set `data-name` and an ISO `data-date` for sorting. Each card
-contains artwork, title, author, compatibility, description, and links to its
-project page and downloads. Search, category counts, and sorting derive from
+`resource-packs`; set `data-name` and an ISO `data-date` for sorting. Each card is a horizontal banner linking to its project page, where downloads
+and compatibility details are available. Use `.pack-banner`, an item SVG at
+`assets/images/banner-<slug>.svg`, a short subtitle, and a per-pack accent in
+`assets/css/catalog-banners.css`. Keep the title and summary IDs unique and
+retain a screen-reader description so full recipe terms remain searchable. Search, category counts, and sorting derive from
 these cards. Empty categories show an explicit unreleased state.
 
 The homepage features one released project, a searchable catalog, and a separate
