@@ -71,3 +71,8 @@ test('includes snapshot preview builds with a readable label, sorted first', () 
   const model=releaseModel({...release,assets:[...release.assets,asset('Flesh2Leather-26.4-snapshot-1-4.zip')]});
   assert.deepEqual(model.builds.map(b=>b.version),['26.4 Snapshots 1–4 (preview)','1.20.2–26.3','1.13.x','1.9.x']);
 });
+
+test('includes snapshot-to-pre-release preview builds with a readable label, sorted first', () => {
+  const model=releaseModel({...release,assets:[...release.assets,asset('Flesh2Leather-26.4-snapshot-1-to-pre-1.zip')]});
+  assert.deepEqual(model.builds.map(b=>b.version),['26.4 Snapshot 1 through Pre-Release 1 (preview)','1.20.2–26.3','1.13.x','1.9.x']);
+});

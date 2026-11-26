@@ -9,6 +9,11 @@ function escapeRegExp(value) {
 }
 
 export function versionLabel(raw) {
+  const snapshotPre = raw.match(/^(.+?)-snapshot-(\d+)-to-pre-(\d+)$/i);
+  if (snapshotPre) {
+    const [, game, first, pre] = snapshotPre;
+    return `${game} Snapshot ${first} through Pre-Release ${pre} (preview)`;
+  }
   const snapshot = raw.match(/^(.+?)-snapshot-(\d+)(?:-(\d+))?$/i);
   if (snapshot) {
     const [, game, first, last] = snapshot;
@@ -26,7 +31,7 @@ export function optionsFromContainer(container = {}) {
     repository,
     packName,
     prefix,
-    versionPattern: new RegExp(`^${escapeRegExp(prefix)}-(\\d+(?:\\.(?:\\d+|x))*(?:-\\d+(?:\\.(?:\\d+|x))*)?(?:-snapshot-\\d+(?:-\\d+)?)?)\\.zip$`, 'i'),
+    versionPattern: new RegExp(`^${escapeRegExp(prefix)}-(\\d+(?:\\.(?:\\d+|x))*(?:-\\d+(?:\\.(?:\\d+|x))*)?(?:-snapshot-\\d+(?:-\\d+)?(?:-to-pre-\\d+)?)?)\\.zip$`, 'i'),
   };
 }
 
@@ -34,7 +39,7 @@ export function releaseModel(release, options = {}) {
   const repository = options.repository || defaults.repository;
   const packName = options.packName || defaults.packName;
   const prefix = options.prefix || packName;
-  const versionPattern = options.versionPattern || new RegExp(`^${escapeRegExp(prefix)}-(\\d+(?:\\.(?:\\d+|x))*(?:-\\d+(?:\\.(?:\\d+|x))*)?(?:-snapshot-\\d+(?:-\\d+)?)?)\\.zip$`, 'i');
+  const versionPattern = options.versionPattern || new RegExp(`^${escapeRegExp(prefix)}-(\\d+(?:\\.(?:\\d+|x))*(?:-\\d+(?:\\.(?:\\d+|x))*)?(?:-snapshot-\\d+(?:-\\d+)?(?:-to-pre-\\d+)?)?)\\.zip$`, 'i');
   if (!release || release.draft || release.prerelease || !release.tag_name || !Array.isArray(release.assets)) throw new Error('Invalid release');
   if (!release.html_url?.startsWith(`${repository}/releases/tag/`)) throw new Error('Invalid release URL');
   const files = release.assets.filter(asset => asset.state === 'uploaded' && asset.browser_download_url?.startsWith(`${repository}/releases/download/`));
