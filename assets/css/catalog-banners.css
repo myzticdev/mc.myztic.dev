@@ -1,0 +1,28 @@
+/* Homepage banners: shared proportions, with a distinct item and accent per pack. */
+.catalog-results .project-grid { grid-template-columns:minmax(0,1fr); gap:10px; }
+.pack-banner { --pack-accent:#8da9bf; border:0; border-left:5px solid var(--pack-accent); border-radius:0 7px 7px 0; background:#16171c; color:#fff; overflow:visible; }
+.pack-banner.wool2string { --pack-accent:#b29ddd; }
+.pack-banner.flesh2leather { --pack-accent:#be8d5e; }
+.pack-banner.craftsaddles { --pack-accent:#91bb7e; }
+.pack-banner.nochatpopup { --pack-accent:#80adbf; }
+.pack-banner-link { position:relative; isolation:isolate; display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:148px; padding:20px 28px; overflow:hidden; border-radius:0 7px 7px 0; color:inherit; text-decoration:none; }
+.pack-banner-link::before { content:''; position:absolute; z-index:-1; inset:0 0 0 auto; width:31%; background:color-mix(in srgb,var(--pack-accent) 8%,#16171c); clip-path:polygon(40% 0,100% 0,100% 100%,0 100%); }
+.pack-banner-link:hover { color:#fff; background:#ffffff05; }
+.pack-banner-link:focus-visible { outline:3px solid var(--pack-accent); outline-offset:3px; }
+.pack-banner-copy { min-width:0; }
+.pack-banner-brand { margin:0 0 5px; color:var(--pack-accent); font-size:11px; font-weight:400; letter-spacing:3px; line-height:1.5; }
+.pack-banner h3 { margin:0; font-size:clamp(25px,4.5vw,42px); font-weight:700; line-height:1.15; letter-spacing:-1px; }
+.pack-banner-subtitle { margin:5px 0 0; color:#b8b8c2; font-size:18px; line-height:1.4; }
+.pack-banner-icon { flex:none; width:90px; height:100px; object-fit:contain; }
+@media (max-width:520px) {
+ .pack-banner-link { min-height:94px; padding:13px 13px; gap:6px; }
+ .pack-banner-brand { font-size:8px; letter-spacing:2px; margin-bottom:4px; }
+ .pack-banner h3 { font-size:clamp(21px,6.4vw,33px); letter-spacing:-.7px; }
+ .pack-banner-subtitle { font-size:12px; margin-top:4px; }
+ .pack-banner-icon { width:58px; height:64px; }
+}
+@media (max-width:350px) {
+ .pack-banner-link { padding-inline:10px; }
+ .pack-banner-icon { width:44px; height:54px; }
+ .pack-banner-brand { letter-spacing:1.5px; }
+}
