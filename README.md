@@ -65,8 +65,8 @@ and compatibility details are available. Use `.pack-banner`, the existing projec
 retain a screen-reader description so full recipe terms remain searchable. Search, category counts, and sorting derive from
 these cards. Empty categories show an explicit unreleased state.
 
-The homepage features one released project, a searchable catalog, and a separate
-workbench for planned projects. Keep unreleased work out of the downloadable
+The homepage features a searchable catalog and a separate workbench for planned
+projects. Keep unreleased work out of the downloadable
 catalog. All cards and download links remain usable without JavaScript. Theme
 selection persists locally; new visitors start in dark mode.
 
